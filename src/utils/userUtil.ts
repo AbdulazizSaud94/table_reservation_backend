@@ -15,7 +15,7 @@ export class UserUtil {
     }
   }
 
-  public async addUser(name: string, password: string, role: string) {
+  public async addUser(name: string, password: string, role: string, createdBy: string) {
     try {
       const users: any = await User.findAll({
         attributes: ['employeeNumber', 'name', 'role', 'deleted', 'createdBy', 'createdAt']
@@ -30,7 +30,7 @@ export class UserUtil {
         employeeNumber: mostRecentId + 1,
         password: hash,
         role,
-        createdBy: 'admin',
+        createdBy: createdBy,
         createdAt: new Date().toISOString()
       }).save();
 

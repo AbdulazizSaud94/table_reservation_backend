@@ -1,20 +1,17 @@
 import { pgdb } from '../dbConnect';
 import { DataTypes } from 'sequelize';
 
-export interface UserInterface {
+export interface TableInterface {
   _id: number;
-  employeeNumber: string;
-  name: string;
-  role: string;
-  password: string;
+  number: number;
+  seats: number;
   createdAt: string;
   createdBy: string;
-  deleted: boolean;
 }
 
 // tslint:disable-next-line: variable-name
-export const User = pgdb.define(
-  'user',
+export const Table = pgdb.define(
+  'table',
   {
     // Model attributes are defined here
     _id: {
@@ -24,27 +21,14 @@ export const User = pgdb.define(
       unique: true,
       type: DataTypes.INTEGER
     },
-    employeeNumber: {
+    number: {
       allowNull: false,
       unique: true,
       type: DataTypes.INTEGER
     },
-    deleted: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-      allowNull: false
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    role: {
-      type: DataTypes.STRING,
-      allowNull: false
+    seats: {
+      allowNull: false,
+      type: DataTypes.INTEGER
     },
     createdBy: {
       type: DataTypes.STRING,

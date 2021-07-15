@@ -15,10 +15,10 @@ usersRouter.get('/', Authinticator.adminAuth, async (req: Request, res: Response
 });
 
 // Add new user
-usersRouter.post('/', Authinticator.adminAuth, async (req: Request, res: Response) => {
+usersRouter.post('/', Authinticator.adminAuth, async (req: any, res: Response) => {
   try {
     userValidator.validateUser(req.body.name, req.body.role, req.body.password);
-    const newUser = await userUtil.addUser(req.body.name, req.body.password, req.body.role);
+    const newUser = await userUtil.addUser(req.body.name, req.body.password, req.body.role, req.userData.name);
     res.status(200);
     res.json(newUser);
   } catch (error) {
