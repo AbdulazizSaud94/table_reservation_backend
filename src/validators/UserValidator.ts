@@ -7,5 +7,6 @@ export class UserValidator {
     if (typeof role !== 'string') throw new Error('User role must be of type string');
     if (typeof password !== 'string') throw new Error('User password must be of type string');
     if (password.length < 6) throw new Error('User password must be longer than 5 characters');
+    if (role !== 'admin' && role !== 'employee') throw new Error('User role must be either admin or employee');
   }
 }
