@@ -49,7 +49,7 @@ tableRouter.delete('/:id', Authinticator.adminAuth, async (req: any, res: Respon
 });
 
 // Get all reservations
-tableRouter.get('/reservation', Authinticator.adminAuth, async (req: Request, res: Response) => {
+tableRouter.get('/reservations', Authinticator.adminAuth, async (req: Request, res: Response) => {
   try {
     const reservations = await reservationUtil.getAllReservations();
     res.status(200);

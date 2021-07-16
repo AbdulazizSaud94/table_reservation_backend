@@ -1,0 +1,397 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Table Reservation api"
+    },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/users/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Login to the system",
+                "requestBody": {
+                    "description": "payload Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/loginPayload"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/tokenResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "badly formated payload"
+                    },
+                    "404": {
+                        "description": "page not found"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Add new user",
+                "requestBody": {
+                    "description": "payload Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/user"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "badly formated payload"
+                    },
+                    "404": {
+                        "description": "page not found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    },
+                    "404": {
+                        "description": "page not found"
+                    }
+                }
+            }
+        },
+        "/api/users/{id}": {
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "user id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "summary": "Delete a user based on id",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/tables": {
+            "post": {
+                "tags": [
+                    "Tables"
+                ],
+                "summary": "Add new table",
+                "requestBody": {
+                    "description": "payload Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/table"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "badly formated payload"
+                    },
+                    "404": {
+                        "description": "page not found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Tables"
+                ],
+                "summary": "Get all tables",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    },
+                    "404": {
+                        "description": "page not found"
+                    }
+                }
+            }
+        },
+        "/api/tables/{id}": {
+            "delete": {
+                "tags": [
+                    "Tables"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "table id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "summary": "Delete a table based on id",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/tables/reservations": {
+            "post": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Add new reservation",
+                "requestBody": {
+                    "description": "payload Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/reservation"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "badly formated payload"
+                    },
+                    "404": {
+                        "description": "page not found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Get all reservations",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    },
+                    "404": {
+                        "description": "page not found"
+                    }
+                }
+            }
+        },
+        "/api/tables/reservations/today": {
+            "get": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Get todays reservations",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    },
+                    "404": {
+                        "description": "page not found"
+                    }
+                }
+            }
+        },
+        "/api/tables/reservations/{id}": {
+            "delete": {
+                "tags": [
+                    "Reservations"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "reservation id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "summary": "Delete a table based on id",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "loginPayload": {
+            "properties": {
+                "employeeNumber": {
+                    "type": "number"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "tokenResponse": {
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "user": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                }
+            }
+        },
+        "table": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "type": "number"
+                },
+                "seats": {
+                    "type": "number"
+                }
+            }
+        },
+        "reservation": {
+            "type": "object",
+            "properties": {
+                "tableNumber": {
+                    "type": "number"
+                },
+                "customers": {
+                    "type": "number"
+                },
+                "from": {
+                    "type": "number"
+                },
+                "to": {
+                    "type": "number"
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ]
+}
