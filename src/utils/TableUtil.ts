@@ -1,3 +1,4 @@
+import { Reservation } from '../models/Reservation';
 import { Table, TableInterface } from '../models/Table';
 
 export class TableUtil {
@@ -29,8 +30,17 @@ export class TableUtil {
     }
   }
   public async deleteTable(tableNumber: number) {
-    const table: any = await Table.findOne({ where: { number: tableNumber } });
+    const table: any = await Table.findOne({
+      where: { number: tableNumber },
+      include: [
+        {
+          model: Reservation,
+          required: false
+        }
+      ]
+    });
     if (!table) throw new Error(`Table #${tableNumber} not found`);
+    if (table.reservations.length > 0) throw new Error('Table with reservations cannot be deleted');
     table.destroy();
     return tableNumber;
   }

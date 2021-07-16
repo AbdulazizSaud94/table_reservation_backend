@@ -16,7 +16,7 @@ app.use('/api', router);
 // Handle 404 - Keep this as a last route
 app.use((req: Request, res: Response) => {
   res.status(404);
-  res.json({ errors: ['404: invalid api request'] });
+  res.json({ error: '404: invalid api request' });
 });
 // start the Express server
 app.listen(port, () => {

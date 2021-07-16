@@ -1,17 +1,19 @@
 import { pgdb } from '../dbConnect';
 import { DataTypes } from 'sequelize';
-import { Reservation } from './Reservation';
-export interface TableInterface {
+
+export interface ReservationInterface {
   _id: number;
-  number: number;
-  seats: number;
+  tablerNumber: number;
+  customers: number;
+  from: number;
+  to: number;
   createdAt: string;
   createdBy: string;
 }
 
 // tslint:disable-next-line: variable-name
-export const Table = pgdb.define(
-  'table',
+export const Reservation = pgdb.define(
+  'reservation',
   {
     // Model attributes are defined here
     _id: {
@@ -21,14 +23,17 @@ export const Table = pgdb.define(
       unique: true,
       type: DataTypes.INTEGER
     },
-    number: {
+    customers: {
       allowNull: false,
-      unique: true,
       type: DataTypes.INTEGER
     },
-    seats: {
-      allowNull: false,
-      type: DataTypes.INTEGER
+    from: {
+      type: DataTypes.DOUBLE,
+      allowNull: false
+    },
+    to: {
+      type: DataTypes.DOUBLE,
+      allowNull: false
     },
     createdBy: {
       type: DataTypes.STRING,
@@ -43,5 +48,3 @@ export const Table = pgdb.define(
     timestamps: false // Other model options go here
   }
 );
-
-Table.hasMany(Reservation, { foreignKey: 'tableNumber', sourceKey: 'number' });
