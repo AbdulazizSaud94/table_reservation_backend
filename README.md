@@ -1,5 +1,9 @@
 # Table Reservation Backend
 
+## API documentation can be found using Swagger on
+
+http://localhost:3000/swagger/
+
 ## Packages that need to be installed
 
 Install all dependencies
